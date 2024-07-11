@@ -54,9 +54,7 @@ public class FlutterFirebaseCorePlugin
 
     firebaseOptions.setApiKey(options.getApiKey());
     firebaseOptions.setAppId(options.getApplicationId());
-    if (options.getGcmSenderId() != null) {
-      firebaseOptions.setMessagingSenderId(options.getGcmSenderId());
-    }
+    firebaseOptions.setMessagingSenderId("");
     if (options.getProjectId() != null) {
       firebaseOptions.setProjectId(options.getProjectId());
     }
