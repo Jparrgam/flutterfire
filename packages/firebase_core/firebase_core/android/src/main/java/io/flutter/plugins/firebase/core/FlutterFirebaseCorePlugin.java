@@ -209,7 +209,7 @@ public class FlutterFirebaseCorePlugin
                       "Failed to load FirebaseOptions from resource. Check that you have defined values.xml correctly."));
               return;
             }
-            taskCompletionSource.setResult(firebaseOptionsToMap(options));
+            taskCompletionSource.setResult(firebaseOptionsToMap(options, ""));
           } catch (Exception e) {
             taskCompletionSource.setException(e);
           }
