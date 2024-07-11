@@ -40,6 +40,28 @@ dependencies:
   flutter:
     sdk: flutter
 
+dependency_overrides:
+  firebase_core:
+    git:
+      url: https://github.com/Jparrgam/flutterfire.git
+      ref: master
+      path: packages/firebase_core/firebase_core
+  firebase_core_platform_interface:
+    git:
+      url: https://github.com/Jparrgam/flutterfire.git
+      ref: master
+      path: packages/firebase_core/firebase_core_platform_interface
+  firebase_database_platform_interface:
+    git:
+      url: https://github.com/Jparrgam/flutterfire.git
+      ref: master
+      path: packages/firebase_database/firebase_database_platform_interface
+  firebase_database_web:
+    git:
+      url: https://github.com/Jparrgam/flutterfire.git
+      ref: master
+      path: packages/firebase_database/firebase_database_web
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
