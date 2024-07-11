@@ -50,16 +50,13 @@ public class FlutterFirebaseCorePlugin
   }
 
   private GeneratedAndroidFirebaseCore.PigeonFirebaseOptions firebaseOptionsToMap(
-      FirebaseOptions options) {
+      FirebaseOptions options, String gcmSenderId) {
     GeneratedAndroidFirebaseCore.PigeonFirebaseOptions.Builder firebaseOptions =
         new GeneratedAndroidFirebaseCore.PigeonFirebaseOptions.Builder();
 
     firebaseOptions.setApiKey(options.getApiKey());
     firebaseOptions.setAppId(options.getApplicationId());
-    Log.e("FlutterFirebaseCorePlugin" , "firebase options info " + options.toString());
-    if (options.getGcmSenderId() != null) {
-      firebaseOptions.setMessagingSenderId(options.getGcmSenderId());
-    }
+    firebaseOptions.setMessagingSenderId(gcmSenderId);
     if (options.getProjectId() != null) {
       firebaseOptions.setProjectId(options.getProjectId());
     }
@@ -71,7 +68,7 @@ public class FlutterFirebaseCorePlugin
   }
 
   private Task<GeneratedAndroidFirebaseCore.PigeonInitializeResponse> firebaseAppToMap(
-      FirebaseApp firebaseApp) {
+      FirebaseApp firebaseApp, String messagingSenderId) {
     TaskCompletionSource<GeneratedAndroidFirebaseCore.PigeonInitializeResponse>
         taskCompletionSource = new TaskCompletionSource<>();
 
@@ -82,7 +79,7 @@ public class FlutterFirebaseCorePlugin
                 new GeneratedAndroidFirebaseCore.PigeonInitializeResponse.Builder();
 
             initializeResponse.setName(firebaseApp.getName());
-            initializeResponse.setOptions(firebaseOptionsToMap(firebaseApp.getOptions()));
+            initializeResponse.setOptions(firebaseOptionsToMap(firebaseApp.getOptions(), messagingSenderId));
 
             initializeResponse.setIsAutomaticDataCollectionEnabled(
                 firebaseApp.isDataCollectionDefaultEnabled());
@@ -152,7 +149,7 @@ public class FlutterFirebaseCorePlugin
 
             FirebaseApp firebaseApp =
                 FirebaseApp.initializeApp(applicationContext, options, appName);
-            taskCompletionSource.setResult(Tasks.await(firebaseAppToMap(firebaseApp)));
+            taskCompletionSource.setResult(Tasks.await(firebaseAppToMap(firebaseApp, initializeAppRequest.getMessagingSenderId())));
           } catch (Exception e) {
             taskCompletionSource.setException(e);
           }
