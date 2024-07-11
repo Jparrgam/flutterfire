@@ -180,7 +180,7 @@ public class FlutterFirebaseCorePlugin
                 new ArrayList<>(firebaseApps.size());
 
             for (FirebaseApp firebaseApp : firebaseApps) {
-              firebaseAppsList.add(Tasks.await(firebaseAppToMap(firebaseApp)));
+              firebaseAppsList.add(Tasks.await(firebaseAppToMap(firebaseApp, "")));
             }
 
             taskCompletionSource.setResult(firebaseAppsList);
