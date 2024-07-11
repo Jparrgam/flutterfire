@@ -23,7 +23,7 @@ dependencies:
     git:
       url: https://github.com/Jparrgam/flutterfire.git
       ref: master
-      path: packages/firebase_core/firebase_core_platform_interface
+      path: packages/firebase_database/firebase_database_platform_interface
   flutter:
     sdk: flutter
   flutter_web_plugins:
