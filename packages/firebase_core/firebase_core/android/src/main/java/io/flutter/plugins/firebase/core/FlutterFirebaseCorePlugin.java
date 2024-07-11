@@ -7,6 +7,8 @@ import static io.flutter.plugins.firebase.core.FlutterFirebasePlugin.cachedThrea
 
 import android.content.Context;
 import android.os.Looper;
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
@@ -54,7 +56,10 @@ public class FlutterFirebaseCorePlugin
 
     firebaseOptions.setApiKey(options.getApiKey());
     firebaseOptions.setAppId(options.getApplicationId());
-    firebaseOptions.setMessagingSenderId("");
+    Log.e("FlutterFirebaseCorePlugin" , "firebase options info " + options.toString());
+    if (options.getGcmSenderId() != null) {
+      firebaseOptions.setMessagingSenderId(options.getGcmSenderId());
+    }
     if (options.getProjectId() != null) {
       firebaseOptions.setProjectId(options.getProjectId());
     }
